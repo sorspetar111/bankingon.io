@@ -1,0 +1,14 @@
+C:\DW\Work\bankingon.io\BankingFeesCalculator\bin\Debug\net8.0\BankingFeesCalculator.exe
+C:\DW\Work\bankingon.io\BankingFeesCalculator\bin\Debug\net8.0\BankingFeesCalculator.deps.json
+C:\DW\Work\bankingon.io\BankingFeesCalculator\bin\Debug\net8.0\BankingFeesCalculator.runtimeconfig.json
+C:\DW\Work\bankingon.io\BankingFeesCalculator\bin\Debug\net8.0\BankingFeesCalculator.dll
+C:\DW\Work\bankingon.io\BankingFeesCalculator\bin\Debug\net8.0\BankingFeesCalculator.pdb
+C:\DW\Work\bankingon.io\BankingFeesCalculator\obj\Debug\net8.0\BankingFeesCalculator.GeneratedMSBuildEditorConfig.editorconfig
+C:\DW\Work\bankingon.io\BankingFeesCalculator\obj\Debug\net8.0\BankingFeesCalculator.AssemblyInfoInputs.cache
+C:\DW\Work\bankingon.io\BankingFeesCalculator\obj\Debug\net8.0\BankingFeesCalculator.AssemblyInfo.cs
+C:\DW\Work\bankingon.io\BankingFeesCalculator\obj\Debug\net8.0\BankingFeesCalculator.csproj.CoreCompileInputs.cache
+C:\DW\Work\bankingon.io\BankingFeesCalculator\obj\Debug\net8.0\BankingFeesCalculator.dll
+C:\DW\Work\bankingon.io\BankingFeesCalculator\obj\Debug\net8.0\refint\BankingFeesCalculator.dll
+C:\DW\Work\bankingon.io\BankingFeesCalculator\obj\Debug\net8.0\BankingFeesCalculator.pdb
+C:\DW\Work\bankingon.io\BankingFeesCalculator\obj\Debug\net8.0\BankingFeesCalculator.genruntimeconfig.cache
+C:\DW\Work\bankingon.io\BankingFeesCalculator\obj\Debug\net8.0\ref\BankingFeesCalculator.dll
