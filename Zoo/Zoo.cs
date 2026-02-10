@@ -80,8 +80,11 @@ namespace ZooSimulation
         public override string Species => "Elephant";
         public const int WalkingThreshold = 70;
         public bool CanWalk => Health >= WalkingThreshold;
-        public override bool IsDead => _isDead;
-        private bool _isDead;
+
+        public override bool IsDead => Health <= MinHealth;
+
+        // public override bool IsDead => _isDead;
+        // private bool _isDead;
         
         private bool _wasUnableToWalk;
         
@@ -133,10 +136,31 @@ namespace ZooSimulation
             }
         }
 
-        */
+        public override void ReduceHealth(int amount)
+        {
+            // Check if elephant is already dead
+            if (_isDead) return;
+            
+            // If elephant can't walk BEFORE health reduction, it dies immediately
+            // According to requirements: "If the elephant cannot walk when its health must be reduced, it dies"
+            if (!CanWalk)
+            {
+                _isDead = true;
+                Health = MinHealth;
+                return;
+            }
+            
+            // Only reduce health if elephant can walk
+            base.ReduceHealth(amount);
+            
+            // After reduction, check if still alive (this is for display purposes)
+            // The death condition is already handled above
+        }
 
         public override void ReduceHealth(int amount)
         {
+            if (_isDead) return;
+
             // Check if elephant can't walk BEFORE any reduction
             if (!CanWalk)  // Health < 70
             {
@@ -146,6 +170,20 @@ namespace ZooSimulation
             }
             
             // Only reduce health if elephant can walk
+            base.ReduceHealth(amount);
+            UpdateWalkingStatus();
+        }
+        */
+
+        public override void ReduceHealth(int amount)
+        {
+            // If elephant cannot walk at the moment of reduction → dies
+            if (!CanWalk)
+            {
+                Health = MinHealth;
+                return;
+            }
+
             base.ReduceHealth(amount);
             UpdateWalkingStatus();
         }
