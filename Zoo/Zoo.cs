@@ -4,7 +4,6 @@ using System.Linq;
 
 namespace ZooSimulation
 {
-    // Base abstract class for all animals
     public abstract class Animal
     {
         protected const int MaxHealth = 100;
@@ -42,7 +41,6 @@ namespace ZooSimulation
         }
     }
     
-    // Monkey class
     public class Monkey : Animal
     {
         public override string Species => "Monkey";
@@ -60,7 +58,6 @@ namespace ZooSimulation
         }
     }
     
-    // Lion class
     public class Lion : Animal
     {
         public override string Species => "Lion";
@@ -78,7 +75,6 @@ namespace ZooSimulation
         }
     }
     
-    // Elephant class with walking capability
     public class Elephant : Animal
     {
         public override string Species => "Elephant";
@@ -95,7 +91,6 @@ namespace ZooSimulation
         
         public override void ReduceHealth(int amount)
         {
-            // Check if elephant should die (can't walk and health is being reduced)
             if (!CanWalk && _wasUnableToWalk)
             {
                 IsDead = true;
@@ -106,10 +101,8 @@ namespace ZooSimulation
             int previousHealth = Health;
             base.ReduceHealth(amount);
             
-            // Update walking status and check death condition
             UpdateWalkingStatus();
             
-            // If elephant couldn't walk before reduction and can't walk now, mark for death
             if (!CanWalk && _wasUnableToWalk)
             {
                 IsDead = true;
@@ -127,7 +120,6 @@ namespace ZooSimulation
         {
             bool currentWalkingStatus = CanWalk;
             
-            // If elephant can't walk now, mark that it was unable to walk
             if (!currentWalkingStatus)
             {
                 _wasUnableToWalk = true;
@@ -145,7 +137,6 @@ namespace ZooSimulation
         }
     }
     
-    // Zoo class that manages all animals
     public class Zoo
     {
         private readonly List<Animal> _animals = new List<Animal>();
@@ -158,26 +149,22 @@ namespace ZooSimulation
         
         private void InitializeZoo()
         {
-            // Create 5 monkeys
             for (int i = 1; i <= 5; i++)
             {
                 _animals.Add(new Monkey($"Monkey{i}"));
             }
             
-            // Create 5 lions
             for (int i = 1; i <= 5; i++)
             {
                 _animals.Add(new Lion($"Lion{i}"));
             }
             
-            // Create 5 elephants
             for (int i = 1; i <= 5; i++)
             {
                 _animals.Add(new Elephant($"Elephant{i}"));
             }
         }
         
-        // Simulate starvation - each animal loses random health between 0-20
         public void SimulateStarvation()
         {
             Console.WriteLine("=== Simulating Starvation ===");
@@ -193,12 +180,10 @@ namespace ZooSimulation
             }
         }
         
-        // Simulate feeding - each species gets random health boost between 5-25
         public void SimulateFeeding()
         {
             Console.WriteLine("\n=== Simulating Feeding ===");
             
-            // Generate random feeding amounts for each species
             int monkeyFood = _random.Next(5, 26);
             int lionFood = _random.Next(5, 26);
             int elephantFood = _random.Next(5, 26);
@@ -224,13 +209,11 @@ namespace ZooSimulation
             }
         }
         
-        // Count and return number of alive animals
         public int GetAliveAnimalCount()
         {
             return _animals.Count(animal => !animal.IsDead);
         }
         
-        // Count alive animals by species
         public Dictionary<string, int> GetAliveAnimalsBySpecies()
         {
             var result = new Dictionary<string, int>
@@ -243,7 +226,6 @@ namespace ZooSimulation
             return result;
         }
         
-        // Display all animals with their status
         public void DisplayAllAnimals()
         {
             Console.WriteLine("\n=== All Animals in Zoo ===");
@@ -264,7 +246,6 @@ namespace ZooSimulation
             }
         }
         
-        // Display only alive animals
         public void DisplayAliveAnimals()
         {
             var aliveAnimals = _animals.Where(a => !a.IsDead).ToList();
@@ -279,7 +260,6 @@ namespace ZooSimulation
         }
     }
     
-    // Main program
     class Program
     {
         static void Main(string[] args)
@@ -289,21 +269,16 @@ namespace ZooSimulation
             Console.WriteLine("=== Zoo Simulation Started ===");
             Console.WriteLine($"Initial alive animals: {zoo.GetAliveAnimalCount()}");
             
-            // Display initial state
             zoo.DisplayAllAnimals();
             
-            // Run several simulation cycles
             for (int day = 1; day <= 5; day++)
             {
                 Console.WriteLine($"\n\n=== Day {day} ===");
                 
-                // First, animals get hungry
                 zoo.SimulateStarvation();
                 
-                // Then they get fed
                 zoo.SimulateFeeding();
                 
-                // Display current state
                 Console.WriteLine($"\nAfter Day {day}:");
                 Console.WriteLine($"Alive animals: {zoo.GetAliveAnimalCount()}");
                 
@@ -313,18 +288,15 @@ namespace ZooSimulation
                     Console.WriteLine($"  {species.Key}: {species.Value} alive");
                 }
                 
-                // Optional: Display detailed status every 2 days
                 if (day % 2 == 0)
                 {
                     zoo.DisplayAliveAnimals();
                 }
             }
             
-            // Final state
             Console.WriteLine("\n\n=== Final State ===");
             zoo.DisplayAllAnimals();
             
-            // Show statistics
             Console.WriteLine("\n=== Simulation Statistics ===");
             Console.WriteLine($"Total days simulated: 5");
             Console.WriteLine($"Final alive count: {zoo.GetAliveAnimalCount()}");
