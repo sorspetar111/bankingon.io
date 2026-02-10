@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="BankingFeesCalculator/BankingFeesCalculator.csproj" />
+  <Project Path="OffersLoader/OffersLoader.csproj" />
+</Solution>
