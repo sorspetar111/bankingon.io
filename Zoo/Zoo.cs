@@ -80,7 +80,8 @@ namespace ZooSimulation
         public override string Species => "Elephant";
         public const int WalkingThreshold = 70;
         public bool CanWalk => Health >= WalkingThreshold;
-        public override bool IsDead { get; }
+        public override bool IsDead => _isDead;
+        private bool _isDead;
         
         private bool _wasUnableToWalk;
         
@@ -89,6 +90,28 @@ namespace ZooSimulation
             UpdateWalkingStatus();
         }
         
+        /*
+        public override void ReduceHealth(int amount)
+        {
+            if (!CanWalk && _wasUnableToWalk)
+            {
+                _isDead = true;
+                Health = MinHealth;
+                return;
+            }
+            
+            int previousHealth = Health;
+            base.ReduceHealth(amount);
+            
+            UpdateWalkingStatus();
+            
+            if (!CanWalk && _wasUnableToWalk)
+            {
+                _isDead = true;
+                Health = MinHealth;
+            }
+        }
+
         public override void ReduceHealth(int amount)
         {
             if (!CanWalk && _wasUnableToWalk)
@@ -108,6 +131,23 @@ namespace ZooSimulation
                 IsDead = true;
                 Health = MinHealth;
             }
+        }
+
+        */
+
+        public override void ReduceHealth(int amount)
+        {
+            // Check if elephant can't walk BEFORE any reduction
+            if (!CanWalk)  // Health < 70
+            {
+                _isDead = true;
+                Health = MinHealth;
+                return;  // Die immediately, no further reduction needed
+            }
+            
+            // Only reduce health if elephant can walk
+            base.ReduceHealth(amount);
+            UpdateWalkingStatus();
         }
         
         public override void IncreaseHealth(int amount)
